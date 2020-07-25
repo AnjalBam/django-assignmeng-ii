@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+  {% if request.user == user %}
+    <div class="jumbotron bg-primary text-white rounded-0">
+      <div class="container">
+        <h1 class="font-weight-light">{{ user.get_full_name }}</h1>
+        <h3 class="font-weight-light">{{ user.email }}</h3>
+      </div>
+
+    </div>
+  {% endif %}
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 col-sm-12 mx-auto">
+        {% if user.profile.profile_img != '' %}
+          <img src="{{ user.profile.profile_img.url }}"
+               alt="ProfileImage" height="400px" class="mx-auto">
+        {% else %}
+          <img src="{% static 'images/default_pp/default.png' %}"
+               alt="ProfileImage" height="400px" class="mx-auto"/>
+        {% endif %}
+        <div>
+          <h3 class="font-weight-light">Name: {{ user.get_full_name }}</h3>
+          <h4 class="font-weight-light">Email: {{ user.email }}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

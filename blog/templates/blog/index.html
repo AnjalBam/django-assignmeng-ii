@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="jumbotron bg-primary text-white rounded-0">
+    <div class="container">
+      <h1 class="font-weight-light display-4">Blogs</h1>
+      <p>Read some awesome blogs on our webiste</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="d-flex flex-row-reverse">
+      <a href="{% url 'create' %}" class="btn btn-primary btn-sm">&plus;
+        CreateBlog</a>
+    </div>
+    <hr>
+    {% for blog in object_list %}
+      <h1 class="font-weight-regular">
+        <a href="{% url 'detail' blog.slug %}">{{ blog.title }} </a>
+      </h1>
+      <p class="text-muted">{{ blog.published_at }} |
+        <a class="text-muted" href=
+            "{% url 'accounts:profile' blog.author_id %}">
+          {{ blog.author.first_name }}| {{ blog.author.email }}
+        </a>
+      </p>
+
+      <p>{{ blog.description|slice:':200' }}...</p>
+      <a class="btn btn-primary btn-sm" href=
+          "{% url 'detail' blog.slug %}">Read More&rarr;
+      </a>
+      <hr>
+    {% endfor %}
+  </div>
+{% endblock content %}

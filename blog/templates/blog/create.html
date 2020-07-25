@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-12 col-md-10 m-auto col-lg-8">
+      <form method="post">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <button type="submit" class="btn btn-success btn-lg ">
+          {% if 'update' in request.get_full_path %}
+            Update
+          {% elif 'create' in request.get_full_path %}
+            Create
+          {% endif %}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

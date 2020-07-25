@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div class="jumbotron bg-primary text-white rounded-0">
+  <div class="container">
+  {% if error is not None %}
+    <h1 class="font-weight-light">{{ error }}</h1>
+  {% endif %}
+  <a class="text-white" href="{% url 'home' %}">Return Home</a>
+  </div>
+  </div>
+
+
+{% endblock content %}
